@@ -43,11 +43,18 @@ if __name__ == '__main__':
     )
 
     if run_build:
-        import numpy.distutils.misc_util
+        #import numpy.distutils.misc_util
 
+        # numpy_include_dirs are set by numpy/core/setup.py, otherwise []
+        include_dirs = Configuration.numpy_include_dirs[:]
+        if not include_dirs:
+            import numpy
+            include_dirs = [ numpy.get_include() ]
+    #     else running numpy/core/setup.py
+            
         module = Extension(
             'cnaturalneighbor',
-            include_dirs=numpy.distutils.misc_util.get_numpy_include_dirs(),
+            include_dirs=include_dirs,
             library_dirs=['/usr/local/lib'],
             extra_compile_args=['--std=c++11', '-O3'],
             sources=[
