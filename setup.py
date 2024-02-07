@@ -46,10 +46,10 @@ if __name__ == '__main__':
         #import numpy.distutils.misc_util
 
         # numpy_include_dirs are set by numpy/core/setup.py, otherwise []
-        include_dirs = Configuration.numpy_include_dirs[:]
-        if not include_dirs:
-            import numpy
-            include_dirs = [ numpy.get_include() ]
+       # include_dirs = Configuration.numpy_include_dirs[:]
+       # if not include_dirs:
+        import numpy
+        include_dirs = [ numpy.get_include() ]
     #     else running numpy/core/setup.py
             
         module = Extension(
